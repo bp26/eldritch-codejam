@@ -1,4 +1,3 @@
-import greenCardsAssets from '../../../assets/MythicCards/green';
 
 const cardsData = [
   {

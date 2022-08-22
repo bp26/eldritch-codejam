@@ -1,4 +1,3 @@
-import blueCardsAssets from '../../../assets/MythicCards/blue';
 
 const cardsData = [
   {
