@@ -1,0 +1,65 @@
+.container {
+    width: 100vw;
+    height: 100vh;
+    background-image: url('/assets/home.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ancient-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 100px;
+    width: 40%;
+    height: 100%; 
+}
+
+.ancient {
+    width: 200px;
+    height: 350px;
+}
+
+.azathoth {
+    background-image: url('assets/Ancients/Azathoth.png');
+}
+
+.cthulthu {
+    background-image: url('assets/Ancients/Cthulthu.png');
+}
+
+.iogsothoth {
+    background-image: url('assets/Ancients/IogSothoth.png');
+}
+
+.shubniggurath {
+    background-image: url('assets/Ancients/ShubNiggurath.png');
+}
+
+
+.difficulty-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 10%;
+    height: 100%;
+}
+
+.difficulty-choice {
+    width: 100%;
+    height: 40%;
+    background-color: rebeccapurple;
+}
+
+.cards-container {
+    width: 40%;
+    height: 100%;
+}
+
