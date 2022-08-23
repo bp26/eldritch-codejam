@@ -17,9 +17,9 @@ function getAncient() {
 function countCards() {
     const current_object = getAncient()
     return {
-        'greenCardsCount': current_object.firstStage.greenCards + current_object.secondStage.greenCards + current_object.thirdStage.greenCards,
-        'blueCardsCount': current_object.firstStage.blueCards + current_object.secondStage.blueCards + current_object.thirdStage.blueCards,
-        'brownCardsCount': current_object.firstStage.brownCards + current_object.secondStage.brownCards + current_object.thirdStage.brownCards   
+        'greenCards': current_object.firstStage.greenCards + current_object.secondStage.greenCards + current_object.thirdStage.greenCards,
+        'blueCards': current_object.firstStage.blueCards + current_object.secondStage.blueCards + current_object.thirdStage.blueCards,
+        'brownCards': current_object.firstStage.brownCards + current_object.secondStage.brownCards + current_object.thirdStage.brownCards   
     }
 }
 
@@ -49,9 +49,24 @@ function getDifficultyArrays() {
 }
 
 function getVeryEasyArrays(initialArrays, cardsCount) {
-    const easyGreen = initialArrays.greenCards.filter(item => item.difficulty === 'easy')
-    const easyBlue = initialArrays.blueCards.filter(item => item.difficulty === 'easy')
-    const easyBrown = initialArrays.brownCards.filter(item => item.difficulty === 'easy')
+    const greenCards = initialArrays.greenCards
+    const blueCards = initialArrays.blueCards
+    const brownCards = initialArrays.brownCards
+
+
+    return {
+        'greenCards':  _.shuffle(filterVeryEasyArray(greenCards)),
+        'blueCards':  _.shuffle(filterVeryEasyArray(blueCards)),
+        'brownCards':  _.shuffle(filterVeryEasyArray(brownCards))
+    }
+
+    function filterVeryEasyArray(array) {
+        if (array.length < cardsCount[array]) {
+            return array.filter(item => item.difficulty === 'easy').slice().concat(array.filter(item => item.difficulty === 'normal').slice(0, (cardsCount[array] - array.length - 1)))
+        } else {
+            return array.filter(item => item.difficulty === 'easy').slice(0, cardsCount[array] - 1)
+        }
+    }
 }
 
 function getEasyArrays(initialArrays, cardsCount) {
@@ -60,17 +75,17 @@ function getEasyArrays(initialArrays, cardsCount) {
     const brown = initialArrays.brownCards.filter(item => item.difficulty !== 'hard')
 
     return {
-        'greenCards':  _.shuffle(green.slice(0, cardsCount.greenCardsCount)),
-        'blueCards':  _.shuffle(blue.slice(0, cardsCount.blueCardsCount)),
-        'brownCards':  _.shuffle(brown.slice(0, cardsCount.brownCardsCount))
+        'greenCards':  _.shuffle(green.slice(0, cardsCount.greenCards)),
+        'blueCards':  _.shuffle(blue.slice(0, cardsCount.blueCards)),
+        'brownCards':  _.shuffle(brown.slice(0, cardsCount.brownCards))
     }
 }
 
 function getNormalArrays(initialArrays, cardsCount) {
     return {
-        'greenCards':  _.shuffle(initialArrays.greenCards.slice(0, cardsCount.greenCardsCount)),
-        'blueCards':  _.shuffle(initialArrays.blueCards.slice(0, cardsCount.blueCardsCount)),
-        'brownCards':  _.shuffle(initialArrays.brownCards.slice(0, cardsCount.brownCardsCount))
+        'greenCards':  _.shuffle(initialArrays.greenCards.slice(0, cardsCount.greenCards)),
+        'blueCards':  _.shuffle(initialArrays.blueCards.slice(0, cardsCount.blueCards)),
+        'brownCards':  _.shuffle(initialArrays.brownCards.slice(0, cardsCount.brownCards))
     }
 }
 
@@ -80,9 +95,9 @@ function getHardArrays(initialArrays, cardsCount) {
     const brown = initialArrays.brownCards.filter(item => item.difficulty !== 'easy')
 
     return {
-        'greenCards':  _.shuffle(green.slice(0, cardsCount.greenCardsCount)),
-        'blueCards':  _.shuffle(blue.slice(0, cardsCount.blueCardsCount)),
-        'brownCards':  _.shuffle(brown.slice(0, cardsCount.brownCardsCount))
+        'greenCards':  _.shuffle(green.slice(0, cardsCount.greenCards)),
+        'blueCards':  _.shuffle(blue.slice(0, cardsCount.blueCards)),
+        'brownCards':  _.shuffle(brown.slice(0, cardsCount.brownCards))
     }
 }
 
@@ -91,14 +106,12 @@ function getVeryHardArrays(initialArrays, cardsCount) {
 }
 
 console.log(countCards())
-console.log(getEasyArrays(shuffleInitialArrays(), countCards()))
+console.log(getVeryEasyArrays(shuffleInitialArrays(), countCards()))
 
 
 function getFinalArrays() {
     
 }
-
-console.log(filterEasyArrays(shuffleInitialArrays()))
 
 
 
