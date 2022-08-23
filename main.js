@@ -6,7 +6,7 @@ import brownCards from './data/mythicCards/brown/index.js'
 
 
 let current_ancient = 'azathoth'
-let current_difficulty = 'normal'
+let current_difficulty = 'hard'
 
 
 function getAncient() {
@@ -32,35 +32,32 @@ function shuffleInitialArrays() {
     }
 }
 
-function getFinalArrays() {
-    const cardsCount = countCards()
+
+function getDifficultyArrays() {
     const initialArrays = shuffleInitialArrays()
     switch(current_difficulty) {
+        case 'easy':
+            return initialArrays.filter(item => {
+                item.difficulty !== 'hard'
+            })
         case 'normal':
-            return getNormalArray(cardsCount, initialArrays)
+            return initialArrays
+        case 'hard':
+            return initialArrays.filter(item => {
+                item.difficulty !== 'easy'
+            })
     }
 }
 
-function
+function getFinalArrays() {
 
-function getNormalArray(cardsCount, initialArrays) {
-    const green = []
-    const blue = []
-    const brown = []
-
-
-    for (let i = 0; i < cardsCount.greenCardsCount; i++) {
-        green.push(initialArrays.greenCards.pop())
-    } 
-    for (let i = 0; i < cardsCount.blueCardsCount; i++) {
-        green.push(initialArrays.blueCards.pop())
-    } 
-    for (let i = 0; i < cardsCount.brownCardsCount; i++) {
-        green.push(initialArrays.greenCards.pop())
-    } 
 }
 
-console.log(getFinalArrays())
+console.log(getDifficultyArrays())
+
+
+
+
 
 
 
