@@ -3,9 +3,9 @@ import greenCards from './data/mythicCards/green/index.js'
 import blueCards from './data/mythicCards/blue/index.js'
 import brownCards from './data/mythicCards/brown/index.js'
 
-
+let game_on 
 let current_ancient = 'azathoth'
-let current_difficulty = 'hard'
+let current_difficulty = 'very hard'
 
 
 function getAncient() {
@@ -48,6 +48,8 @@ function getDifficultyArrays() {
     }
 }
 
+// Arrays for difficulty options
+
 function getNormalArrays(initialArrays, cardsCount) {
     return {
         'greenCards':  _.shuffle(initialArrays.greenCards.slice(0, cardsCount.greenCards)),
@@ -56,7 +58,7 @@ function getNormalArrays(initialArrays, cardsCount) {
     }
 }
 
-function getMiddleArrays(initialArrays, cardsCount, difficulty) {
+function getMiddleArrays(initialArrays, cardsCount, difficulty) {                         // for easy and hard difficulties
     const green = initialArrays.greenCards.filter(item => item.difficulty !== difficulty)
     const blue = initialArrays.blueCards.filter(item => item.difficulty !== difficulty)
     const brown = initialArrays.brownCards.filter(item => item.difficulty !== difficulty)
@@ -68,7 +70,7 @@ function getMiddleArrays(initialArrays, cardsCount, difficulty) {
     }
 }
 
-function getHighArrays(initialArrays, cardsCount, difficulty) {
+function getHighArrays(initialArrays, cardsCount, difficulty) {                         // for very easy and very hard difficulties
 
     const greenCards = initialArrays.greenCards
     const blueCards = initialArrays.blueCards
@@ -92,7 +94,7 @@ function getHighArrays(initialArrays, cardsCount, difficulty) {
 
 
 console.log(countCards())
-console.log(getHighArrays(shuffleInitialArrays(), countCards(), 'easy'))
+console.log(getDifficultyArrays())
 
 
 function getFinalArrays() {
