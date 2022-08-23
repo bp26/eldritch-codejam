@@ -118,10 +118,21 @@ function getStages() {
 }
 
 function popCards() {
-    stagesArray.forEach(stage => {
-        stage.pop()
-    })
+    if (stagesArray[0].length > 0) {
+        stagesArray[0].pop()
+    } else if (stagesArray[1].length > 0) {
+        stagesArray[1].pop()
+    } else if (stagesArray[2].length > 0) {
+        stagesArray[2].pop()
+    } else {
+        return
+    }
 }
+
+function trackCards() {
+
+}
+
 
 
 
