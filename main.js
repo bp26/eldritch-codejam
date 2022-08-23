@@ -7,7 +7,6 @@ import brownCards from './data/mythicCards/brown/index.js'
 let current_ancient = 'azathoth'
 let current_difficulty = 'hard'
 
-
 function getAncient() {
     return ancientsData.filter(item => {
         return item.id === current_ancient
@@ -36,7 +35,7 @@ function getDifficultyArrays() {
     const cardsCount = countCards()
     switch(current_difficulty) {
         case 'very easy':
-            return getVeryEasyArrays(initialArrays, cardsCount)
+            return getVeryArrays(initialArrays, cardsCount, 'easy')
         case 'easy':
             return getEasyArrays(initialArrays, cardsCount)
         case 'normal':
@@ -44,28 +43,30 @@ function getDifficultyArrays() {
         case 'hard':
             return getHardArrays(initialArrays, cardsCount)
         case 'very hard':
-            return gerVeryHardArrays(initialArrays, cardsCount)
+            return gerVeryHardArrays(initialArrays, cardsCount, 'hard')
     }
 }
 
-function getVeryEasyArrays(initialArrays, cardsCount) {
+function getVeryArrays(initialArrays, cardsCount, difficulty) {
+
     const greenCards = initialArrays.greenCards
     const blueCards = initialArrays.blueCards
     const brownCards = initialArrays.brownCards
 
+    console.log(blueCards.filter(item => item.difficulty === 'easy'))
 
-    return {
-        'greenCards':  _.shuffle(filterVeryEasyArray(greenCards)),
-        'blueCards':  _.shuffle(filterVeryEasyArray(blueCards)),
-        'brownCards':  _.shuffle(filterVeryEasyArray(brownCards))
+    function filterArrays (array, arrayName, cardsCount) {
+        if (array.length < cardsCount[arrayName]) {
+            return array.filter(item => item.difficulty === difficulty).slice(0).concat(array.filter(item => item.difficulty === 'normal').slice(0, (cardsCount[arrayName] - array.length - 1)))
+        } else {
+            return array.filter(item => item.difficulty === 'easy').slice(0, cardsCount[arrayName])
+        }
     }
 
-    function filterVeryEasyArray(array) {
-        if (array.length < cardsCount[array]) {
-            return array.filter(item => item.difficulty === 'easy').slice().concat(array.filter(item => item.difficulty === 'normal').slice(0, (cardsCount[array] - array.length - 1)))
-        } else {
-            return array.filter(item => item.difficulty === 'easy').slice(0, cardsCount[array] - 1)
-        }
+    return {
+        'greenCards':  _.shuffle(filterArrays(greenCards, 'greenCards', cardsCount)),
+        'blueCards':  _.shuffle(filterArrays(blueCards, 'blueCards', cardsCount)),
+        'brownCards': _.shuffle(filterArrays(brownCards, 'brownCards', cardsCount))
     }
 }
 
@@ -106,7 +107,7 @@ function getVeryHardArrays(initialArrays, cardsCount) {
 }
 
 console.log(countCards())
-console.log(getVeryEasyArrays(shuffleInitialArrays(), countCards()))
+console.log(getVeryArrays(shuffleInitialArrays(), countCards(), 'easy'))
 
 
 function getFinalArrays() {
