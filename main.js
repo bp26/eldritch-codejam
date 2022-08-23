@@ -5,7 +5,7 @@ import brownCards from './data/mythicCards/brown/index.js'
 
 let game_on 
 let current_ancient = 'azathoth'
-let current_difficulty = 'very hard'
+let current_difficulty = 'easy'
 
 
 function getAncient() {
@@ -31,75 +31,99 @@ function shuffleInitialArrays() {
     }
 }
 
-function getDifficultyArrays() {
+
+/*-------------- Get arrays for difficulty options --------------------*/
+
+function getDifficultyArrays() {                             
+    
     const initialArrays = shuffleInitialArrays()
     const cardsCount = countCards()
     switch(current_difficulty) {
         case 'very easy':
-            return getHighArrays(initialArrays, cardsCount, 'easy')
+            return getHighArrays('easy')    // start with easy, then normal
         case 'easy':
-            return getMiddleArrays(initialArrays, cardsCount, 'hard')
+            return getMiddleArrays('hard')  // not hard
         case 'normal':
-            return getNormalArrays(initialArrays, cardsCount)
+            return getNormalArrays()
         case 'hard':
-            return getMiddleArrays(initialArrays, cardsCount, 'easy')
+            return getMiddleArrays('easy')  // not easy
         case 'very hard':
-            return getHighArrays(initialArrays, cardsCount, 'hard')
+            return getHighArrays('hard')   // start with hard, then normal
     }
-}
 
-// Arrays for difficulty options
 
-function getNormalArrays(initialArrays, cardsCount) {
-    return {
-        'greenCards':  _.shuffle(initialArrays.greenCards.slice(0, cardsCount.greenCards)),
-        'blueCards':  _.shuffle(initialArrays.blueCards.slice(0, cardsCount.blueCards)),
-        'brownCards':  _.shuffle(initialArrays.brownCards.slice(0, cardsCount.brownCards))
-    }
-}
-
-function getMiddleArrays(initialArrays, cardsCount, difficulty) {                         // for easy and hard difficulties
-    const green = initialArrays.greenCards.filter(item => item.difficulty !== difficulty)
-    const blue = initialArrays.blueCards.filter(item => item.difficulty !== difficulty)
-    const brown = initialArrays.brownCards.filter(item => item.difficulty !== difficulty)
-
-    return {
-        'greenCards':  _.shuffle(green.slice(0, cardsCount.greenCards)),
-        'blueCards':  _.shuffle(blue.slice(0, cardsCount.blueCards)),
-        'brownCards':  _.shuffle(brown.slice(0, cardsCount.brownCards))
-    }
-}
-
-function getHighArrays(initialArrays, cardsCount, difficulty) {                         // for very easy and very hard difficulties
-
-    const greenCards = initialArrays.greenCards
-    const blueCards = initialArrays.blueCards
-    const brownCards = initialArrays.brownCards
-
-    function filterArrays (array, arrayName, cardsCount) {
-        const difficultyArray = array.filter(item => item.difficulty === difficulty)
-        if (difficultyArray.length < cardsCount[arrayName]) {
-            return [...difficultyArray.slice(0), ...array.filter(item => item.difficulty === 'normal').slice(0, cardsCount[arrayName] - difficultyArray.length)]
-        } else {
-            return difficultyArray.slice(0, cardsCount[arrayName])
+    function getNormalArrays() {                                   // for normal difficulty
+        return {
+            'greenCards':  _.shuffle(initialArrays.greenCards.slice(0, cardsCount.greenCards)),
+            'blueCards':  _.shuffle(initialArrays.blueCards.slice(0, cardsCount.blueCards)),
+            'brownCards':  _.shuffle(initialArrays.brownCards.slice(0, cardsCount.brownCards))
         }
     }
+    
+
+    function getMiddleArrays(difficulty) {                         // for easy and hard difficulties
+        const green = initialArrays.greenCards.filter(item => item.difficulty !== difficulty)
+        const blue = initialArrays.blueCards.filter(item => item.difficulty !== difficulty)
+        const brown = initialArrays.brownCards.filter(item => item.difficulty !== difficulty)
+        return {
+            'greenCards':  _.shuffle(green.slice(0, cardsCount.greenCards)),
+            'blueCards':  _.shuffle(blue.slice(0, cardsCount.blueCards)),
+            'brownCards':  _.shuffle(brown.slice(0, cardsCount.brownCards))
+        }
+    }
+    
+
+    function getHighArrays(difficulty) {                         // for very easy and very hard difficulties
+        const greenCards = initialArrays.greenCards
+        const blueCards = initialArrays.blueCards
+        const brownCards = initialArrays.brownCards 
+        function filterArrays (array, arrayName, cardsCount) {
+            const difficultyArray = array.filter(item => item.difficulty === difficulty)
+            if (difficultyArray.length < cardsCount[arrayName]) {
+                return [...difficultyArray.slice(0), ...array.filter(item => item.difficulty === 'normal').slice(0, cardsCount[arrayName] - difficultyArray.length)]
+            } else {
+                return difficultyArray.slice(0, cardsCount[arrayName])
+            }
+        }
+        return {
+            'greenCards':  _.shuffle(filterArrays(greenCards, 'greenCards', cardsCount)),
+            'blueCards':  _.shuffle(filterArrays(blueCards, 'blueCards', cardsCount)),
+            'brownCards': _.shuffle(filterArrays(brownCards, 'brownCards', cardsCount))
+        }
+    }
+}
+
+/*-------------------------------------------------------------*/
+
+
+function getStages() {
+    const current_object = getAncient()
+    const finalArray = getDifficultyArrays()
+    console.log(finalArray)  
+
+    function setStage(current_object, finalArray, stage) {
+        const stageData = current_object[stage]
+        console.log(stageData)
+        const stageArray = []
+        for (let key in stageData) {
+            for (let i = 0; i < stageData[key]; i++) {
+                stageArray.push(finalArray.pop())
+            }
+        }
+        return stageArray
+    }
 
     return {
-        'greenCards':  _.shuffle(filterArrays(greenCards, 'greenCards', cardsCount)),
-        'blueCards':  _.shuffle(filterArrays(blueCards, 'blueCards', cardsCount)),
-        'brownCards': _.shuffle(filterArrays(brownCards, 'brownCards', cardsCount))
+        'firstStage': setStage(current_object, finalArray, 'firstStage'),
+        'secondStage': setStage(current_object, finalArray, 'secondStage'),
+        'thirdStage': setStage(current_object, finalArray, 'thirdStage'),   
     }
 }
 
 
-console.log(countCards())
+
+
 console.log(getDifficultyArrays())
-
-
-function getFinalArrays() {
-    
-}
 
 
 
