@@ -35,7 +35,7 @@ function shuffleInitialArrays() {
 /*-------------- Get arrays for difficulty options --------------------*/
 
 function getDifficultyArrays() {                             
-    
+
     const initialArrays = shuffleInitialArrays()
     const cardsCount = countCards()
     switch(current_difficulty) {
@@ -99,31 +99,33 @@ function getDifficultyArrays() {
 function getStages() {
     const current_object = getAncient()
     const finalArray = getDifficultyArrays()
-    console.log(finalArray)  
+    
 
-    function setStage(current_object, finalArray, stage) {
+
+    function setStage(stage) {
         const stageData = current_object[stage]
-        console.log(stageData)
         const stageArray = []
         for (let key in stageData) {
             for (let i = 0; i < stageData[key]; i++) {
-                stageArray.push(finalArray.pop())
+                stageArray.push(finalArray[key].pop())
             }
         }
         return stageArray
     }
 
+
     return {
-        'firstStage': setStage(current_object, finalArray, 'firstStage'),
-        'secondStage': setStage(current_object, finalArray, 'secondStage'),
-        'thirdStage': setStage(current_object, finalArray, 'thirdStage'),   
+        'firstStage': _.shuffle(setStage('firstStage')),
+        'secondStage': _.shuffle(setStage('secondStage')),
+        'thirdStage': _.shuffle(setStage('thirdStage')),   
     }
 }
 
 
 
 
-console.log(getDifficultyArrays())
+console.log(getStages())
+
 
 
 
