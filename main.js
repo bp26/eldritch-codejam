@@ -3,9 +3,10 @@ import greenCards from './data/mythicCards/green/index.js'
 import blueCards from './data/mythicCards/blue/index.js'
 import brownCards from './data/mythicCards/brown/index.js'
 
-let game_on 
+let game_on = false
 let current_ancient = 'azathoth'
 let current_difficulty = 'easy'
+const stagesArray = []
 
 
 function getAncient() {
@@ -110,21 +111,22 @@ function getStages() {
                 stageArray.push(finalArray[key].pop())
             }
         }
-        return stageArray
+        return _.shuffle(stageArray)
     }
 
+    stagesArray.push(setStage('firstStage'), setStage('secondStage'), setStage('thirdStage'))
+}
 
-    return {
-        'firstStage': _.shuffle(setStage('firstStage')),
-        'secondStage': _.shuffle(setStage('secondStage')),
-        'thirdStage': _.shuffle(setStage('thirdStage')),   
-    }
+function popCards() {
+    stagesArray.forEach(stage => {
+        stage.pop()
+    })
 }
 
 
 
-
-console.log(getStages())
+getStages()
+console.log(stagesArray)
 
 
 
