@@ -4,7 +4,6 @@ import blueCards from './data/mythicCards/blue/index.js'
 import brownCards from './data/mythicCards/brown/index.js'
 
 
-
 let current_ancient = 'azathoth'
 let current_difficulty = 'hard'
 
@@ -32,28 +31,74 @@ function shuffleInitialArrays() {
     }
 }
 
-
 function getDifficultyArrays() {
     const initialArrays = shuffleInitialArrays()
+    const cardsCount = countCards()
     switch(current_difficulty) {
+        case 'very easy':
+            return getVeryEasyArrays(initialArrays, cardsCount)
         case 'easy':
-            return initialArrays.filter(item => {
-                item.difficulty !== 'hard'
-            })
+            return getEasyArrays(initialArrays, cardsCount)
         case 'normal':
-            return initialArrays
+            return getNormalArrays(initialArrays, cardsCount)
         case 'hard':
-            return initialArrays.filter(item => {
-                item.difficulty !== 'easy'
-            })
+            return getHardArrays(initialArrays, cardsCount)
+        case 'very hard':
+            return gerVeryHardArrays(initialArrays, cardsCount)
     }
 }
 
-function getFinalArrays() {
+function getVeryEasyArrays(initialArrays, cardsCount) {
+    const easyGreen = initialArrays.greenCards.filter(item => item.difficulty === 'easy')
+    const easyBlue = initialArrays.blueCards.filter(item => item.difficulty === 'easy')
+    const easyBrown = initialArrays.brownCards.filter(item => item.difficulty === 'easy')
+}
+
+function getEasyArrays(initialArrays, cardsCount) {
+    const green = initialArrays.greenCards.filter(item => item.difficulty !== 'hard')
+    const blue = initialArrays.blueCards.filter(item => item.difficulty !== 'hard')
+    const brown = initialArrays.brownCards.filter(item => item.difficulty !== 'hard')
+
+    return {
+        'greenCards':  _.shuffle(green.slice(0, cardsCount.greenCardsCount)),
+        'blueCards':  _.shuffle(blue.slice(0, cardsCount.blueCardsCount)),
+        'brownCards':  _.shuffle(brown.slice(0, cardsCount.brownCardsCount))
+    }
+}
+
+function getNormalArrays(initialArrays, cardsCount) {
+    return {
+        'greenCards':  _.shuffle(initialArrays.greenCards.slice(0, cardsCount.greenCardsCount)),
+        'blueCards':  _.shuffle(initialArrays.blueCards.slice(0, cardsCount.blueCardsCount)),
+        'brownCards':  _.shuffle(initialArrays.brownCards.slice(0, cardsCount.brownCardsCount))
+    }
+}
+
+function getHardArrays(initialArrays, cardsCount) {
+    const green = initialArrays.greenCards.filter(item => item.difficulty !== 'easy')
+    const blue = initialArrays.blueCards.filter(item => item.difficulty !== 'easy')
+    const brown = initialArrays.brownCards.filter(item => item.difficulty !== 'easy')
+
+    return {
+        'greenCards':  _.shuffle(green.slice(0, cardsCount.greenCardsCount)),
+        'blueCards':  _.shuffle(blue.slice(0, cardsCount.blueCardsCount)),
+        'brownCards':  _.shuffle(brown.slice(0, cardsCount.brownCardsCount))
+    }
+}
+
+function getVeryHardArrays(initialArrays, cardsCount) {
 
 }
 
-console.log(getDifficultyArrays())
+console.log(countCards())
+console.log(getEasyArrays(shuffleInitialArrays(), countCards()))
+
+
+function getFinalArrays() {
+    
+}
+
+console.log(filterEasyArrays(shuffleInitialArrays()))
 
 
 
