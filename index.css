@@ -1,3 +1,7 @@
+* {
+    outline: 1px solid red;
+}
+
 .container {
     width: 100vw;
     height: 100vh;
@@ -14,17 +18,18 @@
 .ancient-container {
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 100px;
+    gap: 50px;
     width: 40%;
     height: 100%; 
 }
 
 .ancient {
     width: 200px;
-    height: 350px;
+    height: 300px;
+    background-size: 100% 100%;
 }
 
 .azathoth {
@@ -48,15 +53,34 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 10%;
+    width: 20%;
     height: 100%;
+}
+
+.difficulty-list {
+    width: 80%;
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 }
 
 .difficulty-choice {
     width: 100%;
-    height: 40%;
+    height: 50px;
+    font-size: 30px;
     background-color: rebeccapurple;
+    color: white;
+    border: 1px solid rebeccapurple;
 }
+
+.difficulty-choice:hover {
+    border: 1px solid white;
+}
+
+
 
 .cards-container {
     width: 40%;
