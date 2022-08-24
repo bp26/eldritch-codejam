@@ -14,6 +14,8 @@ const difficultyChoiceCollection = document.querySelectorAll('.difficulty-choice
 const cardMainFeatures = document.querySelector('.card-main-features')
 const cardShuffleButton = document.querySelector('.card-shuffle-button')
 
+const cardPopButoon = document.querySelector('.card-pop-button')
+const cardReveal = document.querySelector('.card-reveal')
 
 const stageTitleCollection = document.querySelectorAll('.stage-title')
 const countGreenCollection = document.querySelectorAll('.count-green')
@@ -137,15 +139,27 @@ function getStages() {
     stagesArray.push(setStage('firstStage'), setStage('secondStage'), setStage('thirdStage'))
 }
 
-function popCards() {
-    if (stagesArray[0].length > 0) {
-        stagesArray[0].pop()
-    } else if (stagesArray[1].length > 0) {
-        stagesArray[1].pop()
-    } else if (stagesArray[2].length > 0) {
-        stagesArray[2].pop()
-    } else {
-        return
+
+
+function setCardImage() {
+    if (stagesArray[2].length === 0) {return false}
+    const card = popCards()
+    console.log(`${card.id} - ${card.difficulty} difficulty`)
+
+    const img = new Image()
+    img.src = card.cardFace;
+    img.onload = () => {
+    cardReveal.style.backgroundImage = `url('${img.src}')`;
+    };
+
+    function popCards() {
+        if (stagesArray[0].length > 0) {
+            return stagesArray[0].pop()
+        } else if (stagesArray[1].length > 0) {
+            return stagesArray[1].pop()
+        } else if (stagesArray[2].length > 0) {
+            return stagesArray[2].pop()
+        } 
     }
 }
 
@@ -222,6 +236,12 @@ cardShuffleButton.addEventListener('click', () => {
     trackCards()
     cardShuffleButton.classList.add('card-shuffle-button-hidden')
     cardMainFeatures.classList.remove('card-main-features-hidden')
+})
+
+cardPopButoon.addEventListener('click', () => {
+    setCardImage()
+    trackCards()
+    trackStages()
 })
 
 
