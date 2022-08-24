@@ -10,7 +10,9 @@ import brownCards from './data/mythicCards/brown/index.js'
 
 const ancientCollection = document.querySelectorAll('.ancient')
 const difficultyList = document.querySelector('.difficulty-list')
-const difficultyChoiceCollection = document.querySelectorAll('.difficulty-choice') 
+const difficultyChoiceCollection = document.querySelectorAll('.difficulty-choice')
+const cardMainFeatures = document.querySelector('.card-main-features')
+const cardShuffleButton = document.querySelector('.card-shuffle-button')
 
 
 const stageTitleCollection = document.querySelectorAll('.stage-title')
@@ -22,7 +24,7 @@ const countBrownCollection = document.querySelectorAll('.count-brown')
 
 let game_on = false
 let current_ancient
-let current_difficulty = 'easy'
+let current_difficulty
 const stagesArray = []
 
 /*-----------------Functions-----------------------*/
@@ -183,6 +185,7 @@ ancientCollection.forEach((ancient, index) => {
         current_ancient = ancientsData[index].id
         setHighlightForAncient()
         difficultyList.classList.remove('difficulty-list-hidden')
+        cardMainFeatures.classList.add('card-main-features-hidden')
     })
 
     function setHighlightForAncient() {
@@ -191,6 +194,23 @@ ancientCollection.forEach((ancient, index) => {
         })
     }
 })
+
+difficultyChoiceCollection.forEach((difficulty, index) => {
+    difficulty.addEventListener('click', () => {
+        current_difficulty = difficulties[index].id
+        setHighlightForDifficultyChoice()
+        cardShuffleButton.classList.remove('card-shuffle-button-hidden')
+        cardMainFeatures.classList.add('card-main-features-hidden')
+    })
+
+    function setHighlightForDifficultyChoice() {
+        difficultyChoiceCollection.forEach((newDifficulty, newIndex) =>  {
+            newIndex === index ? newDifficulty.classList.add('difficulty-choice-chosen') : newDifficulty.classList.remove('difficulty-choice-chosen') 
+        })
+    }
+})
+
+
 
 /*getStages()
 trackCards()
