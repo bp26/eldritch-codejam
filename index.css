@@ -240,5 +240,6 @@
     width: 150px;
     height: 200px;
     border: 1px solid white;
+    background-size: 100% 100%;
 }
 
