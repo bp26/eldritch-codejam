@@ -44,6 +44,10 @@
     border: 1px solid red;
 }
 
+.ancient-chosen:hover {
+    border: 1px solid red;
+}
+
 .azathoth {
     background-image: url('assets/Ancients/Azathoth.png');
 }
@@ -75,11 +79,20 @@
 .difficulty-list {
     width: 80%;
     height: 40%;
+
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 10px;
+
+    opacity: 1;
+    transition: opacity 1s;
+}
+
+.difficulty-list-hidden {
+    visibility: hidden;
+    opacity: 0;
 }
 
 .difficulty-choice {
