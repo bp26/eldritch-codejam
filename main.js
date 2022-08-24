@@ -1,13 +1,25 @@
+/*------------------Imports--------------------*/
+
 import ancientsData from './data/ancients.js'
 import greenCards from './data/mythicCards/green/index.js'
 import blueCards from './data/mythicCards/blue/index.js'
 import brownCards from './data/mythicCards/brown/index.js'
+
+/*----------Select elements from DOM------------*/
+
+
+const countGreenChildren = document.querySelectorAll('.count-green')
+const countBlueChildren = document.querySelectorAll('.count-blue')
+const countBrownChildren = document.querySelectorAll('.count-brown')
+
+/*-----------------Variables---------------------*/
 
 let game_on = false
 let current_ancient = 'azathoth'
 let current_difficulty = 'easy'
 const stagesArray = []
 
+/*-----------------Functions-----------------------*/
 
 function getAncient() {
     return ancientsData.filter(item => {
@@ -78,6 +90,7 @@ function getDifficultyArrays() {
         const greenCards = initialArrays.greenCards
         const blueCards = initialArrays.blueCards
         const brownCards = initialArrays.brownCards 
+
         function filterArrays (array, arrayName, cardsCount) {
             const difficultyArray = array.filter(item => item.difficulty === difficulty)
             if (difficultyArray.length < cardsCount[arrayName]) {
@@ -86,6 +99,7 @@ function getDifficultyArrays() {
                 return difficultyArray.slice(0, cardsCount[arrayName])
             }
         }
+
         return {
             'greenCards':  _.shuffle(filterArrays(greenCards, 'greenCards', cardsCount)),
             'blueCards':  _.shuffle(filterArrays(blueCards, 'blueCards', cardsCount)),
@@ -101,8 +115,6 @@ function getStages() {
     const current_object = getAncient()
     const finalArray = getDifficultyArrays()
     
-
-
     function setStage(stage) {
         const stageData = current_object[stage]
         const stageArray = []
@@ -130,13 +142,30 @@ function popCards() {
 }
 
 function trackCards() {
+    stagesArray.forEach((stage, index) => {
+        let green = 0
+        let blue = 0
+        let brown = 0
 
+        stage.forEach(card => {
+            if (card.color === 'green') {green++}
+            else if (card.color === 'blue') {blue++}
+            else if (card.color === 'brown') {brown++}
+        })
+        
+        setCardCount()
+
+        function setCardCount() {
+            countGreenChildren[index].textContent = green
+            countBrownChildren[index].textContent = brown
+            countBlueChildren[index].textContent = blue
+        }
+    })
 }
 
 
-
-
 getStages()
+trackCards()
 console.log(stagesArray)
 
 
