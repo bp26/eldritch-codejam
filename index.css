@@ -239,6 +239,6 @@
 .card-reveal {
     width: 150px;
     height: 200px;
-    background-color: aquamarine;
+    border: 1px solid white;
 }
 
