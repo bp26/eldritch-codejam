@@ -231,8 +231,7 @@
 
 .card-pop-button {
     width: 150px;
-    height: 200px;
-    background-image: url('./assets/mythicCardBackground.png');
+    height: 200px; 
     background-size: 100% 100%;
 }
 
