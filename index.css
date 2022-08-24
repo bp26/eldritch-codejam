@@ -118,6 +118,15 @@
 
     width: 40%;
     height: 100%;
+
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 1s;
+}
+
+.card-container-hidden {
+    visibility: hidden;
+    opacity: 0;
 }
 
 .card-tracker-container {
