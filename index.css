@@ -12,7 +12,6 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
 }
 
 .ancient-container {
@@ -82,8 +81,37 @@
 
 
 
-.cards-container {
+.card-container {
     width: 40%;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-tracker-container {
+    width: 100%;
+    height: 50%;
+}
+
+.card-shuffle {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px
+}
+
+.card-deck {
+    width: 150px;
+    height: 200px;
+    background-image: url('./assets/mythicCardBackground.png');
+    background-size: 100% 100%;
+}
+
+.card-reveal {
+    width: 150px;
+    height: 200px;
+    background-color: aquamarine;
 }
 
