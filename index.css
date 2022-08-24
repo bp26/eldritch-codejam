@@ -1,6 +1,6 @@
-* {
+/** {
     outline: 1px solid red;
-}
+}*/
 
 .container {
     width: 100vw;
@@ -13,6 +13,10 @@
     flex-direction: row;
     align-items: center;
 }
+
+
+/*-----------Ancients-----------*/
+
 
 .ancient-container {
     display: flex;
@@ -48,6 +52,9 @@
 }
 
 
+/*------------Difficulty--------------*/
+
+
 .difficulty-container {
     display: flex;
     align-items: center;
@@ -80,17 +87,79 @@
 }
 
 
+/*-------------Cards----------------*/
+
 
 .card-container {
-    width: 40%;
-    height: 100%;
     display: flex;
     flex-direction: column;
+
+    width: 40%;
+    height: 100%;
 }
 
 .card-tracker-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
     width: 100%;
     height: 50%;
+}
+
+.card-tracker {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+
+    width: 150px;
+}
+
+.stage-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.stage-title {
+    color: white;
+    text-align: center;
+}
+
+.stage-tracker {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    gap: 5px;
+}
+
+.stage-count {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+
+    color: white;
+    font-size: 14px
+}
+
+.count-green {
+    background-color: green;
+}
+
+.count-blue {
+    background-color: blue;
+}
+
+.count-brown {
+    background-color: brown;
 }
 
 .card-shuffle {
