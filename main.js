@@ -177,6 +177,10 @@ function trackStages() {
     })
 }
 
+function cleanStagesArray() {
+    stagesArray.length = 0
+}
+
 
 /*----------------------Event-listeners--------------------*/
 
@@ -185,7 +189,9 @@ ancientCollection.forEach((ancient, index) => {
         current_ancient = ancientsData[index].id
         setHighlightForAncient()
         difficultyList.classList.remove('difficulty-list-hidden')
+        if (game_on === true) {cardShuffleButton.classList.remove('card-shuffle-button-hidden')}
         cardMainFeatures.classList.add('card-main-features-hidden')
+        game_on = true
     })
 
     function setHighlightForAncient() {
@@ -210,6 +216,13 @@ difficultyChoiceCollection.forEach((difficulty, index) => {
     }
 })
 
+cardShuffleButton.addEventListener('click', () => {
+    cleanStagesArray()
+    getStages()
+    trackCards()
+    cardShuffleButton.classList.add('card-shuffle-button-hidden')
+    cardMainFeatures.classList.remove('card-main-features-hidden')
+})
 
 
 /*getStages()
