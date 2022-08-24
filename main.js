@@ -7,10 +7,11 @@ import brownCards from './data/mythicCards/brown/index.js'
 
 /*----------Select elements from DOM------------*/
 
+const stageTitleCollection = document.querySelectorAll('.stage-title')
 
-const countGreenChildren = document.querySelectorAll('.count-green')
-const countBlueChildren = document.querySelectorAll('.count-blue')
-const countBrownChildren = document.querySelectorAll('.count-brown')
+const countGreenCollection = document.querySelectorAll('.count-green')
+const countBlueCollection = document.querySelectorAll('.count-blue')
+const countBrownCollection = document.querySelectorAll('.count-brown')
 
 /*-----------------Variables---------------------*/
 
@@ -156,10 +157,16 @@ function trackCards() {
         setCardCount()
 
         function setCardCount() {
-            countGreenChildren[index].textContent = green
-            countBrownChildren[index].textContent = brown
-            countBlueChildren[index].textContent = blue
+            countGreenCollection[index].textContent = green
+            countBrownCollection[index].textContent = brown
+            countBlueCollection[index].textContent = blue
         }
+    })
+}
+
+function trackStages() {
+    stagesArray.forEach((stage, index) => {
+        stage.length === 0 ? stageTitleCollection[index].classList.add('stage-title-empty') : stageTitleCollection[index].classList.remove('stage-title-empty')
     })
 }
 
