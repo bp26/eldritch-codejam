@@ -195,6 +195,13 @@ function cleanStagesArray() {
     stagesArray.length = 0
 }
 
+function setPopButtonBg() {
+    if (stagesArray[2].length !== 0) {
+        cardPopButoon.style.backgroundImage = "url('./assets/mythicCardBackground.png')"; 
+    } else {
+        cardPopButoon.style.backgroundImage = 'none'
+    }
+}
 
 /*----------------------Event-listeners--------------------*/
 
@@ -202,9 +209,12 @@ ancientCollection.forEach((ancient, index) => {
     ancient.addEventListener('click', () => {
         current_ancient = ancientsData[index].id
         setHighlightForAncient()
+
         difficultyList.classList.remove('difficulty-list-hidden')
         if (game_on === true) {cardShuffleButton.classList.remove('card-shuffle-button-hidden')}
         cardMainFeatures.classList.add('card-main-features-hidden')
+
+        cardReveal.style.backgroundImage = 'none';
         game_on = true
     })
 
@@ -219,8 +229,11 @@ difficultyChoiceCollection.forEach((difficulty, index) => {
     difficulty.addEventListener('click', () => {
         current_difficulty = difficulties[index].id
         setHighlightForDifficultyChoice()
+
         cardShuffleButton.classList.remove('card-shuffle-button-hidden')
         cardMainFeatures.classList.add('card-main-features-hidden')
+
+        cardReveal.style.backgroundImage = 'none';
     })
 
     function setHighlightForDifficultyChoice() {
@@ -234,6 +247,8 @@ cardShuffleButton.addEventListener('click', () => {
     cleanStagesArray()
     getStages()
     trackCards()
+    setPopButtonBg()
+
     cardShuffleButton.classList.add('card-shuffle-button-hidden')
     cardMainFeatures.classList.remove('card-main-features-hidden')
 })
@@ -242,12 +257,9 @@ cardPopButoon.addEventListener('click', () => {
     setCardImage()
     trackCards()
     trackStages()
+    setPopButtonBg()
 })
 
-
-/*getStages()
-trackCards()
-*/
 
 
 
