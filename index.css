@@ -85,14 +85,10 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
-
-    opacity: 1;
-    transition: opacity 1s;
 }
 
 .difficulty-list-hidden {
-    visibility: hidden;
-    opacity: 0;
+    display: none;
 }
 
 .difficulty-choice {
@@ -102,6 +98,10 @@
     background-color: rebeccapurple;
     color: white;
     border: 1px solid rebeccapurple;
+}
+
+.difficulty-choice-chosen {
+    background-color: red;
 }
 
 .difficulty-choice:hover {
@@ -114,18 +114,41 @@
 
 .card-container {
     display: flex;
+    align-items: center;
+    justify-content: space-around;
     flex-direction: column;
 
     width: 40%;
     height: 100%;
-
-    visibility: visible;
-    opacity: 1;
-    transition: opacity 1s;
 }
 
-.card-container-hidden {
-    visibility: hidden;
+.card-shuffle-button {
+    height: 40px;
+    font-size: 30px;
+    background-color: blueviolet;
+    color: white;
+    border: 1px solid transparent;
+}
+
+.card-shuffle-button:hover {
+    border: 1px solid white;
+}
+
+.card-shuffle-button-hidden {
+    display: none;
+}
+
+.card-main-features {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    height: 100%;
+
+}
+
+.card-main-features-hidden {
+    display: none;
     opacity: 0;
 }
 
@@ -197,7 +220,7 @@
     background-color: brown;
 }
 
-.card-shuffle {
+.card-deck-container {
     width: 100%;
     height: 50%;
     display: flex;
