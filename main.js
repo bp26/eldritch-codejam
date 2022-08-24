@@ -1,14 +1,19 @@
 /*------------------Imports--------------------*/
 
 import ancientsData from './data/ancients.js'
+import difficulties from './data/difficulties.js'
 import greenCards from './data/mythicCards/green/index.js'
 import blueCards from './data/mythicCards/blue/index.js'
 import brownCards from './data/mythicCards/brown/index.js'
 
 /*----------Select elements from DOM------------*/
 
-const stageTitleCollection = document.querySelectorAll('.stage-title')
+const ancientCollection = document.querySelectorAll('.ancient')
+const difficultyList = document.querySelector('.difficulty-list')
+const difficultyChoiceCollection = document.querySelectorAll('.difficulty-choice') 
 
+
+const stageTitleCollection = document.querySelectorAll('.stage-title')
 const countGreenCollection = document.querySelectorAll('.count-green')
 const countBlueCollection = document.querySelectorAll('.count-blue')
 const countBrownCollection = document.querySelectorAll('.count-brown')
@@ -16,7 +21,7 @@ const countBrownCollection = document.querySelectorAll('.count-brown')
 /*-----------------Variables---------------------*/
 
 let game_on = false
-let current_ancient = 'azathoth'
+let current_ancient
 let current_difficulty = 'easy'
 const stagesArray = []
 
@@ -171,9 +176,25 @@ function trackStages() {
 }
 
 
-getStages()
+/*----------------------Event-listeners--------------------*/
+
+ancientCollection.forEach((ancient, index) => {
+    ancient.addEventListener('click', () => {
+        current_ancient = ancientsData[index].id
+        setHighlightForAncient()
+        difficultyList.classList.remove('difficulty-list-hidden')
+    })
+
+    function setHighlightForAncient() {
+        ancientCollection.forEach((newAncient, newIndex) =>  {
+            newIndex === index ? newAncient.classList.add('ancient-chosen') : newAncient.classList.remove('ancient-chosen') 
+        })
+    }
+})
+
+/*getStages()
 trackCards()
-console.log(stagesArray)
+*/
 
 
 
