@@ -12,8 +12,9 @@ const ancientCollection = document.querySelectorAll('.ancient')
 const difficultyList = document.querySelector('.difficulty-list')
 const difficultyChoiceCollection = document.querySelectorAll('.difficulty-choice')
 const cardMainFeatures = document.querySelector('.card-main-features')
-const cardShuffleButton = document.querySelector('.card-shuffle-button')
+const cardShuffleButtonContainer = document.querySelector('.card-shuffle-button-container')
 
+const cardShuffleButton = document.querySelector('.card-shuffle-button')
 const cardPopButoon = document.querySelector('.card-pop-button')
 const cardReveal = document.querySelector('.card-reveal')
 
@@ -211,7 +212,7 @@ ancientCollection.forEach((ancient, index) => {
         setHighlightForAncient()
 
         difficultyList.classList.remove('difficulty-list-hidden')
-        if (game_on === true) {cardShuffleButton.classList.remove('card-shuffle-button-hidden')}
+        if (game_on === true) {cardShuffleButtonContainer.classList.remove('card-shuffle-button-container-hidden')}
         cardMainFeatures.classList.add('card-main-features-hidden')
 
         cardReveal.style.backgroundImage = 'none';
@@ -229,7 +230,7 @@ difficultyChoiceCollection.forEach((difficulty, index) => {
         current_difficulty = difficulties[index].id
         setHighlightForDifficultyChoice()
 
-        cardShuffleButton.classList.remove('card-shuffle-button-hidden')
+        cardShuffleButtonContainer.classList.remove('card-shuffle-button-container-hidden')
         cardMainFeatures.classList.add('card-main-features-hidden')
 
         cardReveal.style.backgroundImage = 'none';
@@ -251,7 +252,7 @@ cardShuffleButton.addEventListener('click', () => {
     trackStages()
     setPopButtonBg()
 
-    cardShuffleButton.classList.add('card-shuffle-button-hidden')
+    cardShuffleButtonContainer.classList.add('card-shuffle-button-container-hidden')
     cardMainFeatures.classList.remove('card-main-features-hidden')
 })
 
