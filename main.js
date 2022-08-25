@@ -248,6 +248,7 @@ cardShuffleButton.addEventListener('click', () => {
     cleanStagesArray()
     getStages()
     trackCards()
+    trackStages()
     setPopButtonBg()
 
     cardShuffleButton.classList.add('card-shuffle-button-hidden')
