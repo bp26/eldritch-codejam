@@ -124,6 +124,7 @@
 }
 
 .card-shuffle-button {
+    width: 45%;
     height: 50px;
     font-size: 30px;
     background-color: blueviolet;
