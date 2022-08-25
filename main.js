@@ -253,6 +253,7 @@ cardShuffleButton.addEventListener('click', () => {
     setPopButtonBg()
 
     console.clear()
+    console.log(stagesArray)
 
     cardShuffleButtonContainer.classList.add('card-shuffle-button-container-hidden')
     cardMainFeatures.classList.remove('card-main-features-hidden')
