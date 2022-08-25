@@ -150,6 +150,7 @@
     color: white;
     border: 1px solid transparent;
     border-radius: 16px;
+    transition: all 0.2s ease-in;
 }
 
 .card-shuffle-button:hover {
@@ -205,6 +206,7 @@
     color: white;
     text-align: center;
     font-size: 18px;
+    transition: all 0.3s;
 }
 
 .stage-title-empty {
