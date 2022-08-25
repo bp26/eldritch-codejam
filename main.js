@@ -215,7 +215,6 @@ ancientCollection.forEach((ancient, index) => {
         cardMainFeatures.classList.add('card-main-features-hidden')
 
         cardReveal.style.backgroundImage = 'none';
-        game_on = true
     })
 
     function setHighlightForAncient() {
@@ -234,6 +233,8 @@ difficultyChoiceCollection.forEach((difficulty, index) => {
         cardMainFeatures.classList.add('card-main-features-hidden')
 
         cardReveal.style.backgroundImage = 'none';
+
+        game_on = true
     })
 
     function setHighlightForDifficultyChoice() {
