@@ -98,6 +98,7 @@
     background-color: rebeccapurple;
     color: white;
     border: 1px solid rebeccapurple;
+    border-radius: 16px;
 }
 
 .difficulty-choice-chosen {
@@ -123,11 +124,12 @@
 }
 
 .card-shuffle-button {
-    height: 40px;
+    height: 50px;
     font-size: 30px;
     background-color: blueviolet;
     color: white;
     border: 1px solid transparent;
+    border-radius: 16px;
 }
 
 .card-shuffle-button:hover {
