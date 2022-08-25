@@ -85,10 +85,14 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
+
+    opacity: 1;
+    transition: opacity 0.7s;
 }
 
 .difficulty-list-hidden {
-    display: none;
+    visibility: hidden;
+    opacity: 0;
 }
 
 .difficulty-choice {
@@ -114,13 +118,10 @@
 
 
 .card-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    flex-direction: column;
 
     width: 40%;
     height: 100%;
+    overflow-y: hidden;
 }
 
 .card-shuffle-button-container {
@@ -130,10 +131,16 @@
 
     width: 100%;
     height: 100%;
+    
+    transform: translateY(0%);
+    opacity: 1;
+    transition: opacity 0.7s;
 }
 
 .card-shuffle-button-container-hidden {
-    display: none;
+    visibility: hidden;
+    transform: translateY(-100%);
+    opacity: 0;
 }
 
 .card-shuffle-button {
@@ -158,10 +165,14 @@
     width: 100%;
     height: 100%;
 
+    transform: translateY(-100%);
+    opacity: 1;
+    transition: opacity 0.7s;
 }
 
 .card-main-features-hidden {
-    display: none;
+    visibility: hidden;
+    transform: translateY(0%);
     opacity: 0;
 }
 
