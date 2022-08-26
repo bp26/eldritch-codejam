@@ -27,8 +27,8 @@
 }
 
 .ancient {
-    width: 250px;
-    height: 350px;
+    width: 230px;
+    height: 330px;
     background-size: 100% 100%;
     border: 1px solid transparent;
     transition: all 0.2s ease-in;
@@ -265,8 +265,8 @@
 }
 
 .card-reveal {
-    width: 250px;
-    height: 350px;
+    width: 230px;
+    height: 330px;
     border: 1px solid white;
     background-size: 100% 100%;
 
